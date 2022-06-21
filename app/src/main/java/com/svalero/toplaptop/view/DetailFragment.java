@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,9 +45,10 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View detailView = inflater.inflate(R.layout.fragment_order_detail, container, false);
+        View detailView = inflater.inflate(R.layout.fragment_user_detail, container, false);
 
         Activity thisActivity = getActivity();
+        Log.i("StringACT", thisActivity.toString());
         if (thisActivity != null) {
             if (thisActivity.toString().contains(VIEW_COMPUTER_ACTIVITY)) {
                 activity = VIEW_COMPUTER_ACTIVITY;

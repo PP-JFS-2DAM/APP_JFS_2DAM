@@ -100,12 +100,12 @@ public class UserListModel implements UserListContract.Model {
         userCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                listener.onDeleteUserSuccess("Moto eliminada correctamente");
+                listener.onDeleteUserSuccess("Usuario eliminado correctamente");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                listener.onDeleteUserError("No se ha podido eliminar la moto");
+                listener.onDeleteUserError("No se ha podido eliminar el usuario");
                 t.printStackTrace();
             }
         });

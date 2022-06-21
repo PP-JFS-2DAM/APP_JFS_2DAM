@@ -18,24 +18,32 @@ public interface ToplaptopApiInterface {
     // Computers
     @GET("computers?all=true")
     Call<List<Computer>> getComputers();
+
     @GET("computers")
     Call<List<Computer>> getComputersByBrand(@Query("brand") String brand);
+
     @GET("computers")
     Call<List<Computer>> getComputersByModel(@Query("model") String model);
+
     @GET("computers")
     Call<List<Computer>> getComputersByRam(@Query("ram") String ram);
+
     @DELETE("computer/{id}")
     Call<Void> deleteComputer(@Path("id") long id);
 
-// Users
+    // Users
     @GET("users?all=true")
     Call<List<User>> getUsers();
+
     @GET("users")
     Call<List<User>> getUsersByName(@Query("name") String name);
+
     @GET("users")
     Call<List<User>> getUsersBySurname(@Query("surname") String surname);
+
     @GET("users")
     Call<List<User>> getUsersByDni(@Query("dni") String dni);
+
     @DELETE("user/{id}")
     Call<Void> deleteUsers(@Path("id") long id);
 

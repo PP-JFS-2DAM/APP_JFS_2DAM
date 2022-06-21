@@ -57,11 +57,12 @@ public class UserListPresenter implements UserListContract.Presenter, UserListCo
 
     @Override   // OnDeleteUsersListener SUCCESS
     public void onDeleteUserSuccess(String message) {
-
+        view.refreshList();
+        view.showMessage(message);
     }
 
     @Override   // OnDeleteUsersListener ERROR
     public void onDeleteUserError(String message) {
-
+        view.showMessage(message);
     }
 }

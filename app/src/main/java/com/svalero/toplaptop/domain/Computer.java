@@ -21,7 +21,7 @@ public class Computer implements Comparable<Computer> {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] computerImage;
     @Ignore
-    private User user;   // TODO en API contiene un objeto usere entero, sacar el ID
+    private User user;   // TODO en API contiene un objeto user entero, sacar el ID
 
 
     public Computer() {

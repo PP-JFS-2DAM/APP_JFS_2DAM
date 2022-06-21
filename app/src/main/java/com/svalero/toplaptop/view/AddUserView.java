@@ -94,7 +94,7 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
 
         intent = getIntent();
         modifyUser = intent.getBooleanExtra("modify_user", false);
-        // Si se está editando el usere, obtiene los datos del usere y los pinta en el formulario
+        // Si se está editando el user, obtiene los datos del user y los pinta en el formulario
         if (modifyUser) {
             user.setId(intent.getIntExtra("id", 0));
             user.setVip(intent.getBooleanExtra("vip", false));
@@ -137,7 +137,7 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
     }
 
     /**
-     * Cambia el texto del switch y el valor booleano VIP del usere
+     * Cambia el texto del switch y el valor booleano VIP del user
      *
      * @param view
      */
@@ -185,7 +185,7 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
         map = googleMap;    // Asignamos el mapa pasado por parámetro a nuestra variable de tipo GoogleMap
         googleMap.setOnMapClickListener(this);  // Establecemos un listener de click sencillo para el mapa
 
-        if (user.getLatitude() != 0 && user.getLongitude() != 0) {  // Si el usere tiene ubicación
+        if (user.getLatitude() != 0 && user.getLongitude() != 0) {  // Si el user tiene ubicación
             onMapClick(new LatLng(user.getLatitude(), user.getLongitude()));    // Pone un Marker
             map.moveCamera(CameraUpdateFactory.newLatLng    // Centra la camara y asigna un zoom
                     (new LatLng((user.getLatitude()-0.06), user.getLongitude())));
@@ -200,7 +200,7 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
             marker.remove();    // lo borramos para asignarle las coordenadas del click
         marker = map.addMarker(new MarkerOptions().position(latLng));
         user.setLatitude((float) latLng.latitude);    // Asignamos las coordenadas del marker a la
-        user.setLongitude((float) latLng.longitude);   // dirección del usere
+        user.setLongitude((float) latLng.longitude);   // dirección del user
 
     }
 }

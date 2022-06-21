@@ -43,7 +43,7 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
     private FrameLayout frameLayout;
     private String orderBy;
     public Spinner findSpinner;
-    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Fecha", "Usere", "Moto", "Matrícula"};
+    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Fecha", "User", "Moto", "Matrícula"};
     private final String DEFAULT_STRING = "";
     private OrderListPresenter presenter;
 

@@ -8,6 +8,7 @@ import androidx.core.view.MenuItemCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -108,7 +109,11 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void findUsersBy(String query) {
+    public void refreshList(){
+        userArrayAdapter.notifyDataSetChanged();
+        Log.i("NOTrefresh", "Refrescaaaaaa");
+    }
+    protected void findUsersBy(String query) {
         users.clear();
 
         if (query.equalsIgnoreCase(DEFAULT_STRING)) {
@@ -207,7 +212,7 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         switch (item.getItemId()) {
-            case R.id.modify_menu:                      // Modificar usere
+            case R.id.modify_menu:                      // Modificar user
                 User user = users.get(info.position);
 
                 intent.putExtra("modify_user", true);
@@ -222,13 +227,13 @@ public class UserListView extends AppCompatActivity implements UserListContract.
 
                 startActivity(intent);
                 return true;
-            case R.id.detail_menu:                      // Detalles del usere
+            case R.id.detail_menu:                      // Detalles del user
                 showDetails(info.position);
                 return true;
-            case R.id.add_menu:                         // Añadir usere
+            case R.id.add_menu:                         // Añadir user
                 startActivity(intent);
                 return true;
-            case R.id.delete_menu:                      // Eliminar usere
+            case R.id.delete_menu:                      // Eliminar user
                 deleteUser(info);
                 return true;
             default:
