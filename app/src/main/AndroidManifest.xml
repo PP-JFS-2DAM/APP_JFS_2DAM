@@ -3,18 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.svalero.toplaptop">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
+
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TopLaptop"
-        tools:targetApi="31">
+        android:theme="@style/Theme.Toplaptop.NoActionBar"
+        android:usesCleartextTraffic="true">    <!-- Admita Json -->
+
         <activity
-            android:name=".MainActivity"
+            android:name=".view.ComputerListView"
+            android:exported="false"
+            android:theme="@style/Theme.Toplaptop" />
+        <activity
+            android:name=".view.AddComputerView"
+            android:exported="false" />
+        <activity
+            android:name=".view.OrderListView"
+            android:exported="false"
+            android:theme="@style/Theme.Toplaptop" />
+        <activity
+            android:name=".view.AddOrderView"
+            android:exported="false" />
+        <activity
+            android:name=".view.UserListView"
+            android:exported="false"
+            android:theme="@style/Theme.Toplaptop" />
+        <activity
+            android:name=".view.AddUserView"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <activity
+            android:name=".view.MainMenuView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +58,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+
+            </meta-data>
+        </provider>
     </application>
 
 </manifest>
