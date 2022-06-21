@@ -14,14 +14,15 @@ import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.util.ImageUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<User> userArrayList;
+    private List<User> userArrayList;
     private LayoutInflater inflater;
 
-    public UserAdapter(Activity context, ArrayList<User> userArrayList) {
+    public UserAdapter(Activity context, List<User> userArrayList) {
         this.context = context;
         this.userArrayList = userArrayList;
         inflater = LayoutInflater.from(context);

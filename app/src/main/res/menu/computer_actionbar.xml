@@ -22,7 +22,7 @@
         android:title="modelo" />
 
     <item
-        android:id="@+id/order_by_license_plate_item"
-        android:title="matricula" />
+        android:id="@+id/order_by_ram_item"
+        android:title="ram" />
 
 </menu>

@@ -5,7 +5,9 @@ import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.model.UserListModel;
 import com.svalero.toplaptop.view.UserListView;
 
-public class UserListPresenter implements UserListContract.Presenter {
+import java.util.List;
+
+public class UserListPresenter implements UserListContract.Presenter, UserListContract.Model.OnLoadUsersListener, UserListContract.Model.OnDeleteUserListener {
 
     private UserListModel model;
     private UserListView view;
@@ -19,26 +21,47 @@ public class UserListPresenter implements UserListContract.Presenter {
 
     @Override
     public void loadAllUsers() {
-        view.listUsers(model.loadAllUsers());
+        model.loadAllUsers(this);
     }
 
     @Override
     public void loadUsersByName(String query) {
-        view.listUsers(model.loadUsersByName(query));
+        model.loadUsersByName(this, query);
     }
 
     @Override
     public void loadUsersBySurname(String query) {
-        view.listUsers(model.loadUsersBySurname(query));
+        model.loadUsersBySurname(this, query);
     }
 
     @Override
     public void loadUsersByDni(String query) {
-        view.listUsers(model.loadUsersByDni(query));
+        model.loadUsersByDni(this, query);
+    }
+
+    @Override   // OnLoadUsersListener SUCCESS
+    public void onLoadUsersSuccess(List<User> users) {
+        view.listUsers(users);
+    }
+
+    @Override      // OnLoadUsersListener ERROR
+    public void onLoadUsersError(String message) {
+        view.showMessage(message);
     }
 
     @Override
     public void deleteUser(User user) {
-        model.deleteUser(user);
+        model.deleteUser(this, user);
+    }
+
+
+    @Override   // OnDeleteUsersListener SUCCESS
+    public void onDeleteUserSuccess(String message) {
+
+    }
+
+    @Override   // OnDeleteUsersListener ERROR
+    public void onDeleteUserError(String message) {
+
     }
 }

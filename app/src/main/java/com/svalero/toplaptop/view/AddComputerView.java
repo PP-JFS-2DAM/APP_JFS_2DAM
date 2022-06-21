@@ -32,7 +32,7 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
     private Spinner userSpinner;
     private EditText etBrand;
     private EditText etModel;
-    private EditText etLicensePlate;
+    private EditText etRam;
     private Intent intent;
     private AddComputerPresenter presenter;
 
@@ -55,7 +55,7 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
         computerImage = findViewById(R.id.computer_imageView);
         etBrand = findViewById(R.id.brand_edittext_add_computer);
         etModel = findViewById(R.id.model_edittext_add_computer);
-        etLicensePlate = findViewById(R.id.license_plate_edittext_add_computer);
+        etRam = findViewById(R.id.ram_edittext_add_computer);
         userSpinner = findViewById(R.id.user_spinner_add_computer);
         addButton = findViewById(R.id.add_computer_button);
 
@@ -108,7 +108,7 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
             }
             etBrand.setText(intent.getStringExtra("brand"));
             etModel.setText(intent.getStringExtra("model"));
-            etLicensePlate.setText(intent.getStringExtra("license_plate"));
+            etRam.setText(intent.getStringExtra("ram"));
 
             addButton.setText(R.string.modify_capital);
         }
@@ -118,7 +118,7 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
 
         computer.setBrand(etBrand.getText().toString().trim());
         computer.setModel(etModel.getText().toString().trim());
-        computer.setLicensePlate(etLicensePlate.getText().toString().trim());
+        computer.setRam(etRam.getText().toString().trim());
         user.setId(users.get(userSpinner.getSelectedItemPosition()).getId());
         computer.setUser(user);
         computer.setComputerImage(ImageUtils.fromImageViewToByteArray(computerImage));
@@ -133,7 +133,7 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
         computerImage.setImageResource(R.drawable.computer_default);
         etBrand.setText("");
         etModel.setText("");
-        etLicensePlate.setText("");
+        etRam.setText("");
 
     }
 

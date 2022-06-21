@@ -21,19 +21,19 @@ public class Order implements Comparable<Order> {
     @ColumnInfo
     private String description;
     @Ignore
-    private User user;   // TODO en API contiene un objeto usere entero, sacar el ID
+    private Technical technical;
     @Ignore
-    private Computer computer; // TODO en API contiene un objeto computer entero, sacar el ID
+    private Computer computer;
 
     public Order() {
     }
 
     @Ignore
-    public Order(int id, LocalDate date, String description, User user, Computer computer) {
+    public Order(int id, LocalDate date, String description, Technical technical, Computer computer) {
         this.id = id;
         this.orderDate = date;
         this.description = description;
-        this.user = user;
+        this.technical = technical;
         this.computer = computer;
     }
 
@@ -61,12 +61,12 @@ public class Order implements Comparable<Order> {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public Technical getTechnical() {
+        return technical;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setTechnical(Technical technical) {
+        this.technical = technical;
     }
 
     public Computer getComputer() {
@@ -82,7 +82,7 @@ public class Order implements Comparable<Order> {
         return "Order{" +
                 "id=" + id +
                 ", date=" + orderDate +
-                ", userId=" + user +
+                ", userId=" + technical +
                 ", computerId=" + computer +
                 ", description='" + description + '\'' +
                 '}';

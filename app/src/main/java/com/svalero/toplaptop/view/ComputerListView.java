@@ -8,6 +8,7 @@ import androidx.core.view.MenuItemCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.svalero.toplaptop.R;
 import com.svalero.toplaptop.adapters.ComputerAdapter;
@@ -35,7 +37,7 @@ public class ComputerListView extends AppCompatActivity implements ComputerListC
     public ComputerAdapter computerArrayAdapter;
     public Spinner findSpinner;
     private String orderBy;
-    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Marca", "Modelo", "Matricula"};
+    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Marca", "Modelo", "Ram"};
     private final String DEFAULT_STRING = "";
     private ComputerListPresenter presenter;
 
@@ -101,7 +103,7 @@ public class ComputerListView extends AppCompatActivity implements ComputerListC
 
     @Override
     public void showMessage(String message) {
-
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -126,7 +128,8 @@ public class ComputerListView extends AppCompatActivity implements ComputerListC
                     presenter.loadComputersByModel(query);
                     break;
                 case 2:
-                    presenter.loadComputersByLicensePlate(query);
+                    Log.i("RAM", " presenter.loadComputersByRam(query)");
+                    presenter.loadComputersByRam(query);
                     break;
             }
         }
@@ -149,8 +152,8 @@ public class ComputerListView extends AppCompatActivity implements ComputerListC
                         return o1.getBrand().compareToIgnoreCase(o2.getBrand());
                     case "model":
                         return o1.getModel().compareToIgnoreCase(o2.getModel());
-                    case "license_plate":
-                        return o1.getLicensePlate().compareToIgnoreCase(o2.getLicensePlate());
+                    case "ram":
+                        return o1.getRam().compareToIgnoreCase(o2.getRam());
                     default:
                         return String.valueOf(o1.getId()).compareTo(String.valueOf(o2.getId()));
                 }
@@ -193,8 +196,8 @@ public class ComputerListView extends AppCompatActivity implements ComputerListC
             case R.id.order_by_model_item:
                 orderBy("model");
                 return true;
-            case R.id.order_by_license_plate_item:
-                orderBy("license_plate");
+            case R.id.order_by_ram_item:
+                orderBy("ram");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -225,7 +228,7 @@ public class ComputerListView extends AppCompatActivity implements ComputerListC
                 intent.putExtra("computer_image", computer.getComputerImage());
                 intent.putExtra("brand", computer.getBrand());
                 intent.putExtra("model", computer.getModel());
-                intent.putExtra("license_plate", computer.getLicensePlate());
+                intent.putExtra("ram", computer.getRam());
                 intent.putExtra("userId", computer.getUser().getId());
 
                 startActivity(intent);

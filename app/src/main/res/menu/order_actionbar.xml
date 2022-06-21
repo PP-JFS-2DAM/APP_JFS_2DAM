@@ -22,7 +22,7 @@
         android:title="usere" />
 
     <item
-        android:id="@+id/order_by_license_plate_item"
+        android:id="@+id/order_by_ram_item"
         android:title="matricula" />
 
     <item

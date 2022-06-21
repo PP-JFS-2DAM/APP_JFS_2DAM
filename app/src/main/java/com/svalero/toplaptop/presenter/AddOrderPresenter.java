@@ -33,12 +33,12 @@ public class AddOrderPresenter implements AddOrderContract.Presenter {
         model.startDb(view.getApplicationContext());
 
         if (view.getComputerSpinner().getCount() == 0) {
-            Toast.makeText(context, R.string.select_computer, Toast.LENGTH_SHORT).show();
+            // TODO view.showMessage(message);
         } else if ((order.getDescription().equals("")) || (order.getOrderDate() == null)) {
             Toast.makeText(context, R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
         } else {
             user.setId(view.getUsers().get(view.getUserSpinner().getSelectedItemPosition()).getId());
-            order.setUser(user);
+            // order.setUser(user);
             computer.setId(view.getComputers().get(view.getComputerSpinner().getSelectedItemPosition()).getId());
             order.setComputer(computer);
 

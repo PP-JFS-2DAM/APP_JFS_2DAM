@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.svalero.toplaptop.R;
 import com.svalero.toplaptop.adapters.UserAdapter;
@@ -28,11 +29,12 @@ import com.svalero.toplaptop.presenter.UserListPresenter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class UserListView extends AppCompatActivity implements UserListContract.View,
         AdapterView.OnItemClickListener, DetailFragment.closeDetails {
 
-    public ArrayList<User> users;
+    public List<User> users;
     public UserAdapter userArrayAdapter;
     private String orderBy;
     private FrameLayout frameLayout;
@@ -46,8 +48,9 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_user);
 
-        presenter = new UserListPresenter(this);
         users = new ArrayList<>();
+        presenter = new UserListPresenter(this);
+        userArrayAdapter = new UserAdapter(this, users);
         frameLayout = findViewById(R.id.frame_layout_user);
         findSpinner = findViewById(R.id.find_spinner_view_user);
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, FIND_SPINNER_OPTIONS);
@@ -87,17 +90,22 @@ public class UserListView extends AppCompatActivity implements UserListContract.
     }
 
     @Override
-    public void listUsers(ArrayList<User> users) {
+    public void listUsers(List<User> users) {
 
         ListView usersListView = findViewById(R.id.user_lisview);
         registerForContextMenu(usersListView);
         this.users = users;
 
-        userArrayAdapter = new UserAdapter(this, users);
+        userArrayAdapter = new UserAdapter(this, this.users);
 
         usersListView.setAdapter(userArrayAdapter);
         usersListView.setOnItemClickListener(this);
 
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void findUsersBy(String query) {
@@ -106,7 +114,6 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         if (query.equalsIgnoreCase(DEFAULT_STRING)) {
             presenter.loadAllUsers();
         } else {
-            query = "%" + query + "%";
             switch (findSpinner.getSelectedItemPosition()) {
                 case 0:
                     presenter.loadUsersByName(query);

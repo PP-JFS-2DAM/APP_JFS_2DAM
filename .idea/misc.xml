@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout-land/activity_add_order.xml" value="0.24757281553398058" />
         <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout-land/fragment_order_detail.xml" value="0.11694616063548102" />
         <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/activity_add_bike.xml" value="0.11329628046173579" />
         <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/activity_add_client.xml" value="0.11329628046173579" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/activity_add_computer.xml" value="0.23984608807182556" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/activity_add_order.xml" value="0.23984608807182556" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/activity_add_user.xml" value="0.23984608807182556" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/activity_menu.xml" value="0.23984608807182556" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/activity_view_computer.xml" value="0.23984608807182556" />
         <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/client_and_bike_adapter.xml" value="0.11329628046173579" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout/fragment_order_detail.xml" value="0.14493373236425822" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/menu/computer_actionbar.xml" value="0.23984608807182556" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/menu/listview_menu.xml" value="0.25" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/menu/order_actionbar.xml" value="0.23984608807182556" />
+        <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/menu/user_actionbar.xml" value="0.23984608807182556" />
       </map>
     </option>
   </component>

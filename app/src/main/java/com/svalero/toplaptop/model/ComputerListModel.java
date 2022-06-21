@@ -1,6 +1,7 @@
 package com.svalero.toplaptop.model;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Room;
 
@@ -62,10 +63,10 @@ public class ComputerListModel implements ComputerListContract.Model {
     }
 
     @Override
-    public void loadComputersByLicensePlate(OnLoadComputersListener listener, String query) {
+    public void loadComputersByRam(OnLoadComputersListener listener, String query) {
         computers.clear();
 
-        Call<List<Computer>> computersCall = api.getComputersByLicense(query);
+        Call<List<Computer>> computersCall = api.getComputersByRam(query);
 
         loadComputersCallEnqueue(listener, computersCall);
     }
@@ -96,16 +97,16 @@ public class ComputerListModel implements ComputerListContract.Model {
     @Override
     public void delete(OnDeleteComputerListener listener, Computer computer) {
         Call<Void> computerCall = api.deleteComputer(computer.getId());
-        // db.computerDao().delete(computer);
+
         computerCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                listener.onDeleteComputerSuccess("Moto eliminada correctamente");
+                listener.onDeleteComputerSuccess("Ordenador eliminado correctamente");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                listener.onDeleteComputerError("No se ha podido eliminar la moto");
+                listener.onDeleteComputerError("No se ha podido eliminar el ordenador");
                 t.printStackTrace();
             }
         });
