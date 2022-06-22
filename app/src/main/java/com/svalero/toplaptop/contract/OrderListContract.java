@@ -5,7 +5,7 @@ import android.content.Context;
 import com.svalero.toplaptop.domain.Computer;
 import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.domain.Order;
-import com.svalero.toplaptop.domain.dto.OrderDTO;
+import com.svalero.toplaptop.domain.dto.OrderDTOAdapter;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public interface OrderListContract {
     }
 
     interface View {
-        void listUsers(ArrayList<OrderDTO> ordersDTOArrayList);
+        void listUsers(ArrayList<OrderDTOAdapter> ordersDTOArrayList);
     }
 
     interface Presenter {

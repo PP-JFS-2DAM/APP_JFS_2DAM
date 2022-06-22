@@ -28,7 +28,7 @@ public class AddComputerPresenter implements AddComputerContract.Presenter {
 
         model.startDb(view.getApplicationContext());
 
-        if ((computer.getBrand().equals("")) || (computer.getModel().equals("")) || (computer.getLicensePlate().equals(""))) {
+        if ((computer.getBrand().equals("")) || (computer.getModel().equals("")) || (computer.getRam().equals(""))) {
             Toast.makeText(view.getApplicationContext(), R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
         } else {
 

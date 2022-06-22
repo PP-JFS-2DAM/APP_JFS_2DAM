@@ -2,6 +2,7 @@ package com.svalero.toplaptop.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,16 @@ import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.util.ImageUtils;
 
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 
 public class UserAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<User> userArrayList;
+    private List<User> userArrayList;
     private LayoutInflater inflater;
 
-    public UserAdapter(Activity context, ArrayList<User> userArrayList) {
+    public UserAdapter(Activity context, List<User> userArrayList) {
         this.context = context;
         this.userArrayList = userArrayList;
         inflater = LayoutInflater.from(context);
@@ -37,7 +40,10 @@ public class UserAdapter extends BaseAdapter {
         TextView userDniTv = convertView.findViewById(R.id.user_computer_tv2);
 
         if (user.getUserImage() != null) {  // Valido si no es null la foto, si no sale fallo nullpoint...
-            userImage.setImageBitmap(ImageUtils.getBitmap(user.getUserImage()));
+            byte[] decode = Base64.getDecoder().decode(user.getUserImage());
+            Log.i("userr",  Base64.getEncoder().encodeToString(decode));
+            userImage.setImageBitmap(ImageUtils.getBitmap(decode));
+            //userImage.setImageBitmap(ImageUtils.getBitmap(user.getUserImage()));
         } else {
             userImage.setImageResource(R.drawable.user);
         }

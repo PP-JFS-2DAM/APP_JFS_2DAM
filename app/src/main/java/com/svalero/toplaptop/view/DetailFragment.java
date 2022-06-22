@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.svalero.toplaptop.util.DateUtils;
 import com.svalero.toplaptop.util.ImageUtils;
 
 import java.time.LocalDate;
+import java.util.Base64;
 
 public class DetailFragment extends Fragment {
 
@@ -44,9 +46,10 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View detailView = inflater.inflate(R.layout.fragment_order_detail, container, false);
+        View detailView = inflater.inflate(R.layout.fragment_user_detail, container, false);
 
         Activity thisActivity = getActivity();
+        Log.i("StringACT", thisActivity.toString());
         if (thisActivity != null) {
             if (thisActivity.toString().contains(VIEW_COMPUTER_ACTIVITY)) {
                 activity = VIEW_COMPUTER_ACTIVITY;
@@ -82,9 +85,8 @@ public class DetailFragment extends Fragment {
                 break;
             case VIEW_USER_ACTIVITY:
                 if (getArguments() != null) {
-                    if (getArguments().getByteArray("user_image") != null)
-                        imageView.setImageBitmap
-                                (ImageUtils.getBitmap(getArguments().getByteArray("user_image")));
+                    if (!getArguments().getString("user_image").equalsIgnoreCase(""))
+                        imageView.setImageBitmap(ImageUtils.getBitmap(Base64.getDecoder().decode(getArguments().getString("user_image"))));
                     textView1.setText(getArguments().getString("name") + " " + getArguments().getString("surname"));
                     textView2.setText(getArguments().getString("dni"));
                     if (getArguments().getBoolean("vip")) {

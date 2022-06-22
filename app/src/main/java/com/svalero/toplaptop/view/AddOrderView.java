@@ -88,7 +88,7 @@ public class AddOrderView extends AppCompatActivity implements AddOrderContract.
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fillSpinners(users.get(userSpinner.getSelectedItemPosition()).getId());
+                fillSpinners((int) users.get(userSpinner.getSelectedItemPosition()).getId());
             }
 
             @Override

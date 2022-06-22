@@ -8,6 +8,7 @@ import androidx.core.view.MenuItemCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.svalero.toplaptop.R;
 import com.svalero.toplaptop.adapters.UserAdapter;
@@ -28,11 +30,12 @@ import com.svalero.toplaptop.presenter.UserListPresenter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class UserListView extends AppCompatActivity implements UserListContract.View,
         AdapterView.OnItemClickListener, DetailFragment.closeDetails {
 
-    public ArrayList<User> users;
+    public List<User> users;
     public UserAdapter userArrayAdapter;
     private String orderBy;
     private FrameLayout frameLayout;
@@ -46,8 +49,9 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_user);
 
-        presenter = new UserListPresenter(this);
         users = new ArrayList<>();
+        presenter = new UserListPresenter(this);
+        userArrayAdapter = new UserAdapter(this, users);
         frameLayout = findViewById(R.id.frame_layout_user);
         findSpinner = findViewById(R.id.find_spinner_view_user);
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, FIND_SPINNER_OPTIONS);
@@ -87,26 +91,35 @@ public class UserListView extends AppCompatActivity implements UserListContract.
     }
 
     @Override
-    public void listUsers(ArrayList<User> users) {
+    public void listUsers(List<User> users) {
 
         ListView usersListView = findViewById(R.id.user_lisview);
         registerForContextMenu(usersListView);
         this.users = users;
 
-        userArrayAdapter = new UserAdapter(this, users);
+        userArrayAdapter = new UserAdapter(this, this.users);
 
         usersListView.setAdapter(userArrayAdapter);
         usersListView.setOnItemClickListener(this);
 
     }
 
-    private void findUsersBy(String query) {
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void refreshList() {
+        userArrayAdapter.notifyDataSetChanged();
+        Log.i("NOTrefresh", "Refrescaaaaaa");
+    }
+
+    protected void findUsersBy(String query) {
         users.clear();
 
         if (query.equalsIgnoreCase(DEFAULT_STRING)) {
             presenter.loadAllUsers();
         } else {
-            query = "%" + query + "%";
             switch (findSpinner.getSelectedItemPosition()) {
                 case 0:
                     presenter.loadUsersByName(query);
@@ -125,6 +138,17 @@ public class UserListView extends AppCompatActivity implements UserListContract.
     private void orderBy(String orderBy) {
         this.orderBy = orderBy;
 
+        switch (orderBy) {
+            case "name":
+                users.stream();
+            case "surname":
+                users.stream();
+            case "dni":
+                users.stream();
+            default:
+                userArrayAdapter.notifyDataSetChanged();
+        }
+        /*
         Collections.sort(users, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
@@ -141,6 +165,7 @@ public class UserListView extends AppCompatActivity implements UserListContract.
             }
         });
         userArrayAdapter.notifyDataSetChanged();
+*/
     }
 
     /**
@@ -200,7 +225,7 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         switch (item.getItemId()) {
-            case R.id.modify_menu:                      // Modificar usere
+            case R.id.modify_menu:                      // Modificar user
                 User user = users.get(info.position);
 
                 intent.putExtra("modify_user", true);
@@ -215,13 +240,13 @@ public class UserListView extends AppCompatActivity implements UserListContract.
 
                 startActivity(intent);
                 return true;
-            case R.id.detail_menu:                      // Detalles del usere
+            case R.id.detail_menu:                      // Detalles del user
                 showDetails(info.position);
                 return true;
-            case R.id.add_menu:                         // Añadir usere
+            case R.id.add_menu:                         // Añadir user
                 startActivity(intent);
                 return true;
-            case R.id.delete_menu:                      // Eliminar usere
+            case R.id.delete_menu:                      // Eliminar user
                 deleteUser(info);
                 return true;
             default:
@@ -254,7 +279,7 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         User user = users.get(position);
 
         Bundle datos = new Bundle();
-        datos.putByteArray("user_image", user.getUserImage());
+        datos.putString("user_image", user.getUserImage());
         datos.putString("name", user.getName());
         datos.putString("surname", user.getSurname());
         datos.putString("dni", user.getDni());

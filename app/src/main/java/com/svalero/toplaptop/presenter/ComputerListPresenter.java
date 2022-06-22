@@ -35,8 +35,8 @@ public class ComputerListPresenter implements ComputerListContract.Presenter, Co
     }
 
     @Override
-    public void loadComputersByLicensePlate(String query) {
-        model.loadComputersByLicensePlate(this, query);
+    public void loadComputersByRam(String query) {
+        model.loadComputersByRam(this, query);
     }
 
     @Override   // OnLoadComputersListener SUCCESS
@@ -46,7 +46,7 @@ public class ComputerListPresenter implements ComputerListContract.Presenter, Co
 
     @Override   // OnLoadComputersListener ERROR
     public void onLoadComputersError(String message) {
-        // TODO view.showMessage(message);
+        view.showMessage(message);
     }
 
     @Override
@@ -56,11 +56,11 @@ public class ComputerListPresenter implements ComputerListContract.Presenter, Co
 
     @Override   // OnDeleteComputersListener SUCCESS
     public void onDeleteComputerSuccess(String message) {
-        // TODO view.showMessage(message);
+        view.showMessage(message);
     }
 
     @Override   // OnDeleteComputersListener ERROR
     public void onDeleteComputerError(String message) {
-        // TODO view.showMessage(message);
+        view.showMessage(message);
     }
 }

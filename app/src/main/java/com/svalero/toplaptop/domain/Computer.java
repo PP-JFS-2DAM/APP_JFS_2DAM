@@ -17,11 +17,11 @@ public class Computer implements Comparable<Computer> {
     @ColumnInfo
     private String model;
     @ColumnInfo
-    private String licensePlate;
+    private String ram;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] computerImage;
     @Ignore
-    private User user;   // TODO en API contiene un objeto usere entero, sacar el ID
+    private User user;   // TODO en API contiene un objeto user entero, sacar el ID
 
 
     public Computer() {
@@ -33,17 +33,17 @@ public class Computer implements Comparable<Computer> {
         this.id = computer.getId();
         this.brand = computer.getBrand();
         this.model = computer.getModel();
-        this.licensePlate = computer.getLicensePlate();
+        this.ram = computer.getRam();
         this.user = computer.getUser();
         this.computerImage = computer.getComputerImage();
     }
 
     @Ignore
-    public Computer(int id, String brand, String model, String licensePlate, User user, byte[] computerImage) {
+    public Computer(int id, String brand, String model, String ram, User user, byte[] computerImage) {
         this.id = id;
         this.brand = brand;
         this.model = model;
-        this.licensePlate = licensePlate;
+        this.ram = ram;
         this.user = user;
         this.computerImage = computerImage;
     }
@@ -73,12 +73,12 @@ public class Computer implements Comparable<Computer> {
         this.model = model;
     }
 
-    public String getLicensePlate() {
-        return licensePlate;
+    public String getRam() {
+        return ram;
     }
 
-    public void setLicensePlate(String licensePlate) {
-        this.licensePlate = licensePlate;
+    public void setRam(String ram) {
+        this.ram = ram;
     }
 
     public User getUser() {
@@ -103,7 +103,7 @@ public class Computer implements Comparable<Computer> {
                 "id=" + id +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                ", licensePlate='" + licensePlate + '\'' +
+                ", ram='" + ram + '\'' +
                 ", userId=" + user +
                 ", computerImage=" + Arrays.toString(computerImage) +
                 '}';

@@ -25,8 +25,8 @@ public interface ComputerDao {
     @Query("SELECT * FROM computer WHERE model LIKE :query")
     List<Computer> getByModelString(String query);
 
-    @Query("SELECT * FROM computer WHERE licensePlate LIKE :query")
-    List<Computer> getByLicensePlateString(String query);
+    @Query("SELECT * FROM computer WHERE ram LIKE :query")
+    List<Computer> getByRamString(String query);
 
     /*
     @Query("SELECT * FROM computer WHERE userId = :userId")

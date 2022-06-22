@@ -13,13 +13,13 @@ import java.util.List;
 @Dao
 public interface OrderDao {
 
-    @Query("SELECT * FROM Order")
+    @Query("SELECT * FROM `Order`")
     List<Order> getAll();
 
-    @Query("SELECT * FROM Order WHERE orderDate LIKE :query")
+    @Query("SELECT * FROM `Order` WHERE orderDate LIKE :query")
     List<Order> getByDate(String query);
 
-    @Query("SELECT * FROM Order WHERE description LIKE :query")
+    @Query("SELECT * FROM `Order` WHERE description LIKE :query")
     List<Order> getByDescriptionString(String query);
 
     @Insert

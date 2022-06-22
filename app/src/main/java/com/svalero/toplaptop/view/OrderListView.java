@@ -25,7 +25,7 @@ import com.svalero.toplaptop.contract.OrderListContract;
 import com.svalero.toplaptop.domain.Computer;
 import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.domain.Order;
-import com.svalero.toplaptop.domain.dto.OrderDTO;
+import com.svalero.toplaptop.domain.dto.OrderDTOAdapter;
 import com.svalero.toplaptop.presenter.OrderListPresenter;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ import java.util.Comparator;
 public class OrderListView extends AppCompatActivity implements OrderListContract.View,
         AdapterView.OnItemClickListener, DetailFragment.closeDetails {
 
-    public ArrayList<OrderDTO> ordersDTOArrayList;
+    public ArrayList<OrderDTOAdapter> ordersDTOArrayList;
 
     public OrderAdapter orderDTOArrayAdapter;
     private Computer computer;
@@ -43,7 +43,7 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
     private FrameLayout frameLayout;
     private String orderBy;
     public Spinner findSpinner;
-    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Fecha", "Usere", "Moto", "Matrícula"};
+    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Fecha", "User", "Moto", "Matrícula"};
     private final String DEFAULT_STRING = "";
     private OrderListPresenter presenter;
 
@@ -95,7 +95,7 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
     }
 
     @Override
-    public void listUsers(ArrayList<OrderDTO> ordersDTOArrayList) {
+    public void listUsers(ArrayList<OrderDTOAdapter> ordersDTOArrayList) {
         ListView ordersListView = findViewById(R.id.order_listview);
         registerForContextMenu(ordersListView);
         this.ordersDTOArrayList = ordersDTOArrayList;
@@ -134,14 +134,14 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
                 break;
             case 3:
                 ordersDTOArrayList.removeIf
-                        (orderDTO -> (!orderDTO.getComputerLicensePlate().toLowerCase().contains(query.toLowerCase())));
+                        (orderDTO -> (!orderDTO.getComputerRam().toLowerCase().contains(query.toLowerCase())));
                 break;
         }   // End switch
         orderBy(orderBy);
     }
 
     /**
-     * Ordena el ArrayList del ListView según los atributos de los objetos OrderDTO y
+     * Ordena el ArrayList del ListView según los atributos de los objetos OrderDTOAdapter y
      * notifica los cambios al ArrayAdapter para que pinte de nuevo el ListView
      *
      * @param orderBy Recibe un String segun el boton del ActionBar pulsado
@@ -149,16 +149,16 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
     private void orderBy(String orderBy) {
         this.orderBy = orderBy;
 
-        Collections.sort(ordersDTOArrayList, new Comparator<OrderDTO>() {
+        Collections.sort(ordersDTOArrayList, new Comparator<OrderDTOAdapter>() {
             @Override
-            public int compare(OrderDTO o1, OrderDTO o2) {
+            public int compare(OrderDTOAdapter o1, OrderDTOAdapter o2) {
                 switch (orderBy) {
                     case "date":
                         return String.valueOf(o1.getDate()).compareToIgnoreCase(String.valueOf(o2.getDate()));
                     case "user_name":
                         return o1.getUserNameSurname().compareToIgnoreCase(o2.getUserNameSurname());
-                    case "license_plate":
-                        return o1.getComputerLicensePlate().compareToIgnoreCase(o2.getComputerLicensePlate());
+                    case "ram":
+                        return o1.getComputerRam().compareToIgnoreCase(o2.getComputerRam());
                     case "computer_model":
                         return o1.getComputerBrandModel().compareToIgnoreCase(o2.getComputerBrandModel());
                     default:
@@ -188,8 +188,8 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
             case R.id.order_by_user_item:
                 orderBy("user_name");
                 return true;
-            case R.id.order_by_license_plate_item:
-                orderBy("license_plate");
+            case R.id.order_by_ram_item:
+                orderBy("ram");
                 return true;
             case R.id.order_by_computer_model_item:
                 orderBy("computer_model");
@@ -228,12 +228,12 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
 
         switch (item.getItemId()) {
             case R.id.modify_menu:                      // Modificar moto
-                OrderDTO orderDTO = ordersDTOArrayList.get(info.position);
+                OrderDTOAdapter orderDTOAdapter = ordersDTOArrayList.get(info.position);
 
                 intent.putExtra("modify_order", true);
-                intent.putExtra("id", orderDTO.getId());
-                intent.putExtra("date", String.valueOf(orderDTO.getDate()));
-                intent.putExtra("description", orderDTO.getDescription());
+                intent.putExtra("id", orderDTOAdapter.getId());
+                intent.putExtra("date", String.valueOf(orderDTOAdapter.getDate()));
+                intent.putExtra("description", orderDTOAdapter.getDescription());
 
                 startActivity(intent);
                 return true;
@@ -253,9 +253,9 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
 
     private void deleteOrder(AdapterView.AdapterContextMenuInfo info) {
 
-        OrderDTO orderDTO = ordersDTOArrayList.get(info.position);
+        OrderDTOAdapter orderDTOAdapter = ordersDTOArrayList.get(info.position);
         Order order = new Order();
-        order.setId(orderDTO.getId());
+        order.setId(orderDTOAdapter.getId());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.are_you_sure_delete_order)
@@ -283,15 +283,15 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
      */
     private void showDetails(int position) {
 
-        OrderDTO orderDTO = ordersDTOArrayList.get(position);
+        OrderDTOAdapter orderDTOAdapter = ordersDTOArrayList.get(position);
 
         Bundle datos = new Bundle();
-        datos.putByteArray("computer_image", orderDTO.getComputerImageOrder());
-        datos.putString("date", String.valueOf(orderDTO.getDate()));
-        datos.putString("name", orderDTO.getUserNameSurname());
-        datos.putString("model", orderDTO.getComputerBrandModel());
-        datos.putString("license", orderDTO.getComputerLicensePlate());
-        datos.putString("description", orderDTO.getDescription());
+        datos.putByteArray("computer_image", orderDTOAdapter.getComputerImageOrder());
+        datos.putString("date", String.valueOf(orderDTOAdapter.getDate()));
+        datos.putString("name", orderDTOAdapter.getUserNameSurname());
+        datos.putString("model", orderDTOAdapter.getComputerBrandModel());
+        datos.putString("license", orderDTOAdapter.getComputerRam());
+        datos.putString("description", orderDTOAdapter.getDescription());
 
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setArguments(datos);

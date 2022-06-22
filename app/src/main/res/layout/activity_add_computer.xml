@@ -99,18 +99,18 @@
             android:paddingTop="0dp">
 
             <TextView
-                android:id="@+id/license_plate_textview_add_computer"
+                android:id="@+id/ram_textview_add_computer"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center|start"
-                android:text="@string/license_plate"
+                android:text="@string/ram"
                 android:textColor="#000000"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/license_plate_edittext_add_computer"
+                android:id="@+id/ram_edittext_add_computer"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

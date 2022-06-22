@@ -40,7 +40,7 @@ public class ComputerAdapter extends BaseAdapter {
             computerImage.setImageBitmap(ImageUtils.getBitmap(computer.getComputerImage()));
         }
         computermodel.setText(computer.getBrand() + " " + computer.getModel());
-        computerPlate.setText(computer.getLicensePlate());
+        computerPlate.setText(computer.getRam());
 
         return convertView;
     }

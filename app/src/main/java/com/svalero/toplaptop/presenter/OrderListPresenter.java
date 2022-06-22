@@ -4,7 +4,7 @@ import com.svalero.toplaptop.contract.OrderListContract;
 import com.svalero.toplaptop.domain.Computer;
 import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.domain.Order;
-import com.svalero.toplaptop.domain.dto.OrderDTO;
+import com.svalero.toplaptop.domain.dto.OrderDTOAdapter;
 import com.svalero.toplaptop.model.OrderListModel;
 import com.svalero.toplaptop.view.OrderListView;
 
@@ -15,7 +15,7 @@ public class OrderListPresenter implements OrderListContract.Presenter {
     private OrderListModel model;
     private OrderListView view;
     private ArrayList<Order> ordersArrayList;
-    private ArrayList<OrderDTO> ordersDTOArrayList;
+    private ArrayList<OrderDTOAdapter> ordersDTOArrayList;
 
     public OrderListPresenter(OrderListView view) {
         model = new OrderListModel(view.getApplicationContext());
@@ -32,19 +32,19 @@ public class OrderListPresenter implements OrderListContract.Presenter {
         ordersArrayList = model.loadAllOrders();
 
         for (Order order : ordersArrayList) {
-            User user = model.loadUserById(order.getUser().getId());
+            //User user = model.loadUserById(order.getUser().getId());
             Computer computer = model.loadComputerById(order.getComputer().getId());
-            OrderDTO orderDTO = new OrderDTO();
+            OrderDTOAdapter orderDTOAdapter = new OrderDTOAdapter();
 
-            orderDTO.setId(order.getId());
-            orderDTO.setDate(order.getOrderDate());
-            orderDTO.setUserNameSurname(user.getName() + " " + user.getSurname());
-            orderDTO.setComputerBrandModel(computer.getBrand() + " " + computer.getModel());
-            orderDTO.setComputerLicensePlate(computer.getLicensePlate());
-            orderDTO.setComputerImageOrder(computer.getComputerImage());
-            orderDTO.setDescription(order.getDescription());
+            orderDTOAdapter.setId(order.getId());
+            orderDTOAdapter.setDate(order.getOrderDate());
+            //orderDTOAdapter.setUserNameSurname(user.getName() + " " + user.getSurname());
+            orderDTOAdapter.setComputerBrandModel(computer.getBrand() + " " + computer.getModel());
+            orderDTOAdapter.setComputerRam(computer.getRam());
+            orderDTOAdapter.setComputerImageOrder(computer.getComputerImage());
+            orderDTOAdapter.setDescription(order.getDescription());
 
-            ordersDTOArrayList.add(orderDTO);
+            ordersDTOArrayList.add(orderDTOAdapter);
         }
         view.listUsers(ordersDTOArrayList);
     }

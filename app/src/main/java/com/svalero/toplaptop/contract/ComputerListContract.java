@@ -28,7 +28,7 @@ public interface ComputerListContract {
 
         void loadComputersByModel(OnLoadComputersListener listener, String query);
 
-        void loadComputersByLicensePlate(OnLoadComputersListener listener, String query);
+        void loadComputersByRam(OnLoadComputersListener listener, String query);
 
         void delete(OnDeleteComputerListener listener, Computer computer);
     }
@@ -46,7 +46,7 @@ public interface ComputerListContract {
 
         void loadComputersByModel(String query);
 
-        void loadComputersByLicensePlate(String query);
+        void loadComputersByRam(String query);
 
         void deleteComputer(Computer computer);
     }
