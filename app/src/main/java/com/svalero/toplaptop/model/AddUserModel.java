@@ -46,7 +46,7 @@ public class AddUserModel implements AddUserContract.Model {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                onAddUserListener.onAddUserError("No se ha podido eliminar el usuario");
+                onAddUserListener.onAddUserError("No se ha podido añadir el usuario");
                 t.printStackTrace();
             }
         });
@@ -65,7 +65,8 @@ public class AddUserModel implements AddUserContract.Model {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                onModifyUserListener.onModifyUserError("No se ha podido eliminar");
+                onModifyUserListener.onModifyUserError("No se ha podido modificar");
+                t.printStackTrace();
             }
         });
     }

@@ -1,6 +1,7 @@
 package com.svalero.toplaptop.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,6 +10,7 @@ import com.svalero.toplaptop.contract.AddUserContract;
 import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.model.AddUserModel;
 import com.svalero.toplaptop.view.AddUserView;
+import com.svalero.toplaptop.view.UserListView;
 
 public class AddUserPresenter implements AddUserContract.Presenter, AddUserContract.Model.OnAddUserListener, AddUserContract.Model.OnModifyUserListener {
 
@@ -33,12 +35,10 @@ public class AddUserPresenter implements AddUserContract.Presenter, AddUserContr
         } else {
 
             if (modifyUser) {
-                Log.i("userr", "modyfy");
                 view.setModifyUser(false);
                 view.getAddButton().setText(R.string.add_button);
                 model.modifyUser(this, user);
             } else {
-                Log.i("userr", "add");
                 user.setId(0);
                 model.addUser(this, user);
             }
@@ -49,7 +49,6 @@ public class AddUserPresenter implements AddUserContract.Presenter, AddUserContr
     public void onAddUserSuccess(String message) {
         view.showMessage(message);
         view.cleanForm();
-
     }
 
     @Override
@@ -61,6 +60,8 @@ public class AddUserPresenter implements AddUserContract.Presenter, AddUserContr
     public void onModifyUserSuccess(String message) {
         view.showMessage(message);
         view.cleanForm();
+        //Intent intent = new Intent(context, UserListView.class);
+        //startActivity(intent);
     }
 
     @Override
