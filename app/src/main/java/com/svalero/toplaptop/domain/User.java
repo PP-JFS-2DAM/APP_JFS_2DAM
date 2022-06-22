@@ -24,14 +24,15 @@ public class User {
     private float latitude;
     @ColumnInfo
     private float longitude;
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    private byte[] userImage;
+    @ColumnInfo //(typeAffinity = ColumnInfo.BLOB)
+    private String userImage;
+    //private byte[] userImage;
 
     @Ignore
     public User() {
     }
 
-    public User(int id, String name, String surname, String dni, boolean vip, float latitude, float longitude, byte[] userImage) {
+    public User(int id, String name, String surname, String dni, boolean vip, float latitude, float longitude, String userImage) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -98,11 +99,11 @@ public class User {
         this.longitude = longitude;
     }
 
-    public byte[] getUserImage() {
+    public String getUserImage() {
         return userImage;
     }
 
-    public void setUserImage(byte[] userImage) {
+    public void setUserImage(String userImage) {
         this.userImage = userImage;
     }
 
@@ -116,7 +117,7 @@ public class User {
                 ", vip=" + vip +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", userImage=" + Arrays.toString(userImage) +
+                ", userImage=" + userImage +
                 '}';
     }
 }

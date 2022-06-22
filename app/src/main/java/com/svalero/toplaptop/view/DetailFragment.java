@@ -21,6 +21,7 @@ import com.svalero.toplaptop.util.DateUtils;
 import com.svalero.toplaptop.util.ImageUtils;
 
 import java.time.LocalDate;
+import java.util.Base64;
 
 public class DetailFragment extends Fragment {
 
@@ -84,9 +85,8 @@ public class DetailFragment extends Fragment {
                 break;
             case VIEW_USER_ACTIVITY:
                 if (getArguments() != null) {
-                    if (getArguments().getByteArray("user_image") != null)
-                        imageView.setImageBitmap
-                                (ImageUtils.getBitmap(getArguments().getByteArray("user_image")));
+                    if (!getArguments().getString("user_image").equalsIgnoreCase(""))
+                        imageView.setImageBitmap(ImageUtils.getBitmap(Base64.getDecoder().decode(getArguments().getString("user_image"))));
                     textView1.setText(getArguments().getString("name") + " " + getArguments().getString("surname"));
                     textView2.setText(getArguments().getString("dni"));
                     if (getArguments().getBoolean("vip")) {

@@ -1,5 +1,7 @@
 package com.svalero.toplaptop.presenter;
 
+import android.util.Log;
+
 import com.svalero.toplaptop.contract.UserListContract;
 import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.model.UserListModel;
@@ -57,8 +59,10 @@ public class UserListPresenter implements UserListContract.Presenter, UserListCo
 
     @Override   // OnDeleteUsersListener SUCCESS
     public void onDeleteUserSuccess(String message) {
-        view.refreshList();
         view.showMessage(message);
+        Log.i("refress", "1");
+        view.refreshList();
+        Log.i("refress", "2");
     }
 
     @Override   // OnDeleteUsersListener ERROR

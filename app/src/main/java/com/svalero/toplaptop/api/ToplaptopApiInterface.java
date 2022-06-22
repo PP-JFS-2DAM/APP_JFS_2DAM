@@ -8,8 +8,11 @@ import com.svalero.toplaptop.domain.User;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -46,5 +49,11 @@ public interface ToplaptopApiInterface {
 
     @DELETE("user/{id}")
     Call<Void> deleteUsers(@Path("id") long id);
+
+    @POST("user")
+    Call<User> addUser(@Body User user);
+
+    @PUT("user/{id}")
+    Call<User> modifyUser(@Path("id") long id, @Body User user);
 
 }

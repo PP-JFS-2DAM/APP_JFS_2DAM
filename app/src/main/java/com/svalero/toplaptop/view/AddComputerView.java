@@ -119,7 +119,7 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
         computer.setBrand(etBrand.getText().toString().trim());
         computer.setModel(etModel.getText().toString().trim());
         computer.setRam(etRam.getText().toString().trim());
-        user.setId(users.get(userSpinner.getSelectedItemPosition()).getId());
+        user.setId((int) users.get(userSpinner.getSelectedItemPosition()).getId());
         computer.setUser(user);
         computer.setComputerImage(ImageUtils.fromImageViewToByteArray(computerImage));
 

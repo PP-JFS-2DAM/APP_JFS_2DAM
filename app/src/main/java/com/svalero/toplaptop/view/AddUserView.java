@@ -11,11 +11,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,6 +31,8 @@ import com.svalero.toplaptop.contract.AddUserContract;
 import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.presenter.AddUserPresenter;
 import com.svalero.toplaptop.util.ImageUtils;
+
+import java.util.Base64;
 
 public class AddUserView extends AppCompatActivity implements AddUserContract.View, OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
@@ -99,10 +103,12 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
             user.setId(intent.getIntExtra("id", 0));
             user.setVip(intent.getBooleanExtra("vip", false));
             user.setLatitude(intent.getFloatExtra("latitud", 0));
+            Log.i("userr", "lat" + user.getLatitude());
             user.setLongitude(intent.getFloatExtra("longitud", 0));
+            Log.i("userr", "lon" + user.getLongitude());
 
-            if (intent.getByteArrayExtra("user_image") != null)
-                userImage.setImageBitmap(ImageUtils.getBitmap(intent.getByteArrayExtra("user_image")));
+            if (!intent.getStringExtra("user_image").equalsIgnoreCase(""))
+                userImage.setImageBitmap(ImageUtils.getBitmap(Base64.getDecoder().decode(intent.getStringExtra("user_image"))));
             etName.setText(intent.getStringExtra("name"));
             etSurname.setText(intent.getStringExtra("surname"));
             etDni.setText(intent.getStringExtra("dni"));
@@ -112,14 +118,23 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
         }
     }
 
+    @Override
     public void addUser(View view) {
-
         user.setName(etName.getText().toString().trim());
         user.setSurname(etSurname.getText().toString().trim());
         user.setDni(etDni.getText().toString().trim());
-        user.setUserImage(ImageUtils.fromImageViewToByteArray(userImage));
-
-        presenter.addUser(user, modifyUser);
+        //user.setUserImage();
+        Log.i("userr", user.toString());
+        byte[] bytes = (ImageUtils.fromImageViewToByteArray(userImage));
+        user.setUserImage(Base64.getEncoder().encodeToString(bytes));
+        //user.setUserImage("s");
+        //Log.i("userr",  Base64.getEncoder().encodeToString(bytes));
+        Log.i("userr", user.getUserImage());
+        Log.i("userr", user.toString());
+        //byte[] decode = Base64.getDecoder().decode(s);
+        //Log.i("userr",  Base64.getEncoder().encodeToString(decode));
+        //userImage.setImageBitmap(ImageUtils.getBitmap(decode));
+        presenter.addOrModifyUser(user, modifyUser);
     }
 
     @Override
@@ -134,6 +149,11 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
         user.setLatitude(0);
         user.setLongitude(0);
         marker.remove();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -188,7 +208,7 @@ public class AddUserView extends AppCompatActivity implements AddUserContract.Vi
         if (user.getLatitude() != 0 && user.getLongitude() != 0) {  // Si el user tiene ubicación
             onMapClick(new LatLng(user.getLatitude(), user.getLongitude()));    // Pone un Marker
             map.moveCamera(CameraUpdateFactory.newLatLng    // Centra la camara y asigna un zoom
-                    (new LatLng((user.getLatitude()-0.06), user.getLongitude())));
+                    (new LatLng((user.getLatitude() - 0.06), user.getLongitude())));
             map.moveCamera(CameraUpdateFactory.zoomTo(11));
         }
     }

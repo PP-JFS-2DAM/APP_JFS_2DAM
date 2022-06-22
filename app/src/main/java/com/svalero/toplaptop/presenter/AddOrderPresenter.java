@@ -37,7 +37,7 @@ public class AddOrderPresenter implements AddOrderContract.Presenter {
         } else if ((order.getDescription().equals("")) || (order.getOrderDate() == null)) {
             Toast.makeText(context, R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
         } else {
-            user.setId(view.getUsers().get(view.getUserSpinner().getSelectedItemPosition()).getId());
+            user.setId((int) view.getUsers().get(view.getUserSpinner().getSelectedItemPosition()).getId());
             // order.setUser(user);
             computer.setId(view.getComputers().get(view.getComputerSpinner().getSelectedItemPosition()).getId());
             order.setComputer(computer);

@@ -109,10 +109,11 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void refreshList(){
+    public void refreshList() {
         userArrayAdapter.notifyDataSetChanged();
         Log.i("NOTrefresh", "Refrescaaaaaa");
     }
+
     protected void findUsersBy(String query) {
         users.clear();
 
@@ -137,6 +138,17 @@ public class UserListView extends AppCompatActivity implements UserListContract.
     private void orderBy(String orderBy) {
         this.orderBy = orderBy;
 
+        switch (orderBy) {
+            case "name":
+                users.stream();
+            case "surname":
+                users.stream();
+            case "dni":
+                users.stream();
+            default:
+                userArrayAdapter.notifyDataSetChanged();
+        }
+        /*
         Collections.sort(users, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
@@ -153,6 +165,7 @@ public class UserListView extends AppCompatActivity implements UserListContract.
             }
         });
         userArrayAdapter.notifyDataSetChanged();
+*/
     }
 
     /**
@@ -266,7 +279,7 @@ public class UserListView extends AppCompatActivity implements UserListContract.
         User user = users.get(position);
 
         Bundle datos = new Bundle();
-        datos.putByteArray("user_image", user.getUserImage());
+        datos.putString("user_image", user.getUserImage());
         datos.putString("name", user.getName());
         datos.putString("surname", user.getSurname());
         datos.putString("dni", user.getDni());
