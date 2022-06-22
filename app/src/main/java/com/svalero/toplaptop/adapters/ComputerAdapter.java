@@ -13,6 +13,7 @@ import com.svalero.toplaptop.R;
 import com.svalero.toplaptop.domain.Computer;
 import com.svalero.toplaptop.util.ImageUtils;
 
+import java.util.Base64;
 import java.util.List;
 
 public class ComputerAdapter extends BaseAdapter {
@@ -36,9 +37,9 @@ public class ComputerAdapter extends BaseAdapter {
         TextView computermodel = convertView.findViewById(R.id.user_computer_tv1);
         TextView computerPlate = convertView.findViewById(R.id.user_computer_tv2);
 
-        if (computer.getComputerImage() != null) {  // Valido si no es null la foto, si no sale fallo nullpoint...
-            computerImage.setImageBitmap(ImageUtils.getBitmap(computer.getComputerImage()));
-        }
+        if (!computer.getComputerImage().equalsIgnoreCase(""))
+            computerImage.setImageBitmap(ImageUtils.getBitmap(Base64.getDecoder().decode(computer.getComputerImage())));
+
         computermodel.setText(computer.getBrand() + " " + computer.getModel());
         computerPlate.setText(computer.getRam());
 

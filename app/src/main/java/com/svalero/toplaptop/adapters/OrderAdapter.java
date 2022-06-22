@@ -15,6 +15,7 @@ import com.svalero.toplaptop.util.DateUtils;
 import com.svalero.toplaptop.util.ImageUtils;
 
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class OrderAdapter extends BaseAdapter {
 
@@ -40,9 +41,9 @@ public class OrderAdapter extends BaseAdapter {
         orderDateAndComputerModel.setTextSize(22);
         orderRamAndDescription.setTextSize(18);
 
-        if (orderDTOAdapter.getComputerImageOrder() != null) {  // Valido si no es null la foto, si no sale fallo nullpoint...
-            orderComputerImage.setImageBitmap(ImageUtils.getBitmap(orderDTOAdapter.getComputerImageOrder()));
-        }
+        if (!orderDTOAdapter.getComputerImageOrder().equalsIgnoreCase(""))
+            orderComputerImage.setImageBitmap(ImageUtils.getBitmap(Base64.getDecoder().decode(orderDTOAdapter.getComputerImageOrder())));
+
         orderDateAndComputerModel.setText(DateUtils.fromLocalDateToMyDateFormatString(orderDTOAdapter.getDate()) + " || " + orderDTOAdapter.getComputerBrandModel());
         orderRamAndDescription.setText(orderDTOAdapter.getComputerRam() + " || " + orderDTOAdapter.getDescription());
 

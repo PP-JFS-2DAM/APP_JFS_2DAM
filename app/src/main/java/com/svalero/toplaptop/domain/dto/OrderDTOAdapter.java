@@ -13,14 +13,14 @@ public class OrderDTOAdapter implements Comparable {
     private String userNameSurname;  // User
     private String computerBrandModel;    // User
     private String computerRam;    // Computer
-    private byte[] computerImageOrder;   // Computer
+    private String computerImageOrder;   // Computer
     private String description; // Order
 
     @Ignore
     public OrderDTOAdapter() {
     }
 
-    public OrderDTOAdapter(int id, LocalDate date, String userNameSurname, String computerBrandModel, String computerRam, byte[] computerImageOrder, String description) {
+    public OrderDTOAdapter(int id, LocalDate date, String userNameSurname, String computerBrandModel, String computerRam, String computerImageOrder, String description) {
         this.id = id;
         this.date = date;
         this.userNameSurname = userNameSurname;
@@ -62,11 +62,11 @@ public class OrderDTOAdapter implements Comparable {
         this.computerBrandModel = computerBrandModel;
     }
 
-    public byte[] getComputerImageOrder() {
+    public String getComputerImageOrder() {
         return computerImageOrder;
     }
 
-    public void setComputerImageOrder(byte[] computerImageOrder) {
+    public void setComputerImageOrder(String computerImageOrder) {
         this.computerImageOrder = computerImageOrder;
     }
 
@@ -104,7 +104,7 @@ public class OrderDTOAdapter implements Comparable {
                 ", userNameSurname='" + userNameSurname + '\'' +
                 ", computerBrandModel='" + computerBrandModel + '\'' +
                 ", description='" + description + '\'' +
-                ", computerImageOrder=" + Arrays.toString(computerImageOrder) +
+                ", computerImageOrder=" + computerImageOrder +
                 '}';
     }
 

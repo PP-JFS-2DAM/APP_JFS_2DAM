@@ -10,13 +10,13 @@ public class OrderDTO {
 
     private LocalDate orderDate;
     private String description;
-    private Technical technical;
-    private Computer computer;
+    private int technical;
+    private int computer;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(LocalDate orderDate, String description, Technical technical, Computer computer) {
+    public OrderDTO(LocalDate orderDate, String description, int technical, int computer) {
         this.orderDate = orderDate;
         this.description = description;
         this.technical = technical;
@@ -39,19 +39,19 @@ public class OrderDTO {
         this.description = description;
     }
 
-    public Technical getTechnical() {
+    public int getTechnical() {
         return technical;
     }
 
-    public void setTechnical(Technical technical) {
+    public void setTechnical(int technical) {
         this.technical = technical;
     }
 
-    public Computer getComputer() {
+    public int getComputer() {
         return computer;
     }
 
-    public void setComputer(Computer computer) {
+    public void setComputer(int computer) {
         this.computer = computer;
     }
 }

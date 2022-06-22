@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.svalero.toplaptop.R;
 import com.svalero.toplaptop.contract.AddComputerContract;
@@ -21,6 +23,8 @@ import com.svalero.toplaptop.presenter.AddComputerPresenter;
 import com.svalero.toplaptop.util.ImageUtils;
 
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 
 public class AddComputerView extends AppCompatActivity implements AddComputerContract.View {
 
@@ -37,7 +41,7 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
     private AddComputerPresenter presenter;
 
     private boolean modifyComputer;
-    public ArrayList<User> users;
+    public List<User> users;
 
     public Button getAddButton() {
         return addButton;
@@ -77,7 +81,7 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
     }
 
     @Override
-    public void loadUserSpinner(ArrayList<User> users) {
+    public void loadUserSpinner(List<User> users) {
 
         this.users.clear();
         this.users.addAll(users);
@@ -101,11 +105,10 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
         if (modifyComputer) {
             computer.setId(intent.getIntExtra("id", 0));
             user.setId(intent.getIntExtra("userId", 0));
+            Log.i("userId", "id" + user.getId());
             computer.setUser(user);
-
-            if (intent.getByteArrayExtra("computer_image") != null) {
-                computerImage.setImageBitmap(ImageUtils.getBitmap(intent.getByteArrayExtra("computer_image")));
-            }
+            if (!intent.getStringExtra("computer_image").equalsIgnoreCase(""))
+                computerImage.setImageBitmap(ImageUtils.getBitmap(Base64.getDecoder().decode(intent.getStringExtra("computer_image"))));
             etBrand.setText(intent.getStringExtra("brand"));
             etModel.setText(intent.getStringExtra("model"));
             etRam.setText(intent.getStringExtra("ram"));
@@ -114,16 +117,17 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
         }
     }
 
+    @Override
     public void addComputer(View view) {
 
         computer.setBrand(etBrand.getText().toString().trim());
         computer.setModel(etModel.getText().toString().trim());
         computer.setRam(etRam.getText().toString().trim());
-        user.setId((int) users.get(userSpinner.getSelectedItemPosition()).getId());
+        user.setId(users.get(userSpinner.getSelectedItemPosition()).getId());
+        Log.i("userId", "id" + user.getId());
         computer.setUser(user);
-        computer.setComputerImage(ImageUtils.fromImageViewToByteArray(computerImage));
-
-        presenter.addComputer(computer, modifyComputer);
+        computer.setComputerImage(Base64.getEncoder().encodeToString(ImageUtils.fromImageViewToByteArray(computerImage)));
+        presenter.addOrModifyComputer(computer, modifyComputer);
 
     }
 
@@ -135,6 +139,11 @@ public class AddComputerView extends AppCompatActivity implements AddComputerCon
         etModel.setText("");
         etRam.setText("");
 
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     //Método para tomar foto

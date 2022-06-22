@@ -286,7 +286,7 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
         OrderDTOAdapter orderDTOAdapter = ordersDTOArrayList.get(position);
 
         Bundle datos = new Bundle();
-        datos.putByteArray("computer_image", orderDTOAdapter.getComputerImageOrder());
+        datos.putString("computer_image", orderDTOAdapter.getComputerImageOrder());
         datos.putString("date", String.valueOf(orderDTOAdapter.getDate()));
         datos.putString("name", orderDTOAdapter.getUserNameSurname());
         datos.putString("model", orderDTOAdapter.getComputerBrandModel());

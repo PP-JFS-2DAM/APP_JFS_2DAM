@@ -18,8 +18,8 @@ public class Computer implements Comparable<Computer> {
     private String model;
     @ColumnInfo
     private String ram;
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    private byte[] computerImage;
+    @ColumnInfo
+    private String computerImage;
     @Ignore
     private User user;   // TODO en API contiene un objeto user entero, sacar el ID
 
@@ -39,7 +39,7 @@ public class Computer implements Comparable<Computer> {
     }
 
     @Ignore
-    public Computer(int id, String brand, String model, String ram, User user, byte[] computerImage) {
+    public Computer(int id, String brand, String model, String ram, User user, String computerImage) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -89,11 +89,11 @@ public class Computer implements Comparable<Computer> {
         this.user = user;
     }
 
-    public byte[] getComputerImage() {
+    public String getComputerImage() {
         return computerImage;
     }
 
-    public void setComputerImage(byte[] computerImage) {
+    public void setComputerImage(String computerImage) {
         this.computerImage = computerImage;
     }
 
@@ -105,7 +105,7 @@ public class Computer implements Comparable<Computer> {
                 ", model='" + model + '\'' +
                 ", ram='" + ram + '\'' +
                 ", userId=" + user +
-                ", computerImage=" + Arrays.toString(computerImage) +
+                ", computerImage=" + computerImage +
                 '}';
     }
 

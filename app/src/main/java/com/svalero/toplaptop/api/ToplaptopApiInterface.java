@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.svalero.toplaptop.domain.Computer;
 import com.svalero.toplaptop.domain.User;
+import com.svalero.toplaptop.domain.dto.ComputerDTO;
 
 import java.util.List;
 
@@ -33,6 +34,12 @@ public interface ToplaptopApiInterface {
 
     @DELETE("computer/{id}")
     Call<Void> deleteComputer(@Path("id") long id);
+
+    @POST("computer")
+    Call<Computer> addComputer(@Body ComputerDTO computerDTO);
+
+    @PUT("computer/{id}")
+    Call<Computer> modifyComputer(@Path("id") long id, @Body ComputerDTO computerDTO);
 
     // Users
     @GET("users?all=true")
