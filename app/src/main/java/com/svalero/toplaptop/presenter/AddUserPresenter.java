@@ -29,9 +29,9 @@ public class AddUserPresenter implements AddUserContract.Presenter, AddUserContr
     @Override
     public void addOrModifyUser(User user, Boolean modifyUser) {
         if ((user.getName().equals("")) || (user.getSurname().equals("")) || (user.getDni().equals(""))) {
-            view.showMessage("Completa todos los campos");
+            view.showMessage("Complete all the fields");
         } else if (user.getLatitude() == 0 && user.getLongitude() == 0) {
-            view.showMessage("Selecciona una posición en el mapa");
+            view.showMessage("Select a position on the map");
         } else {
 
             if (modifyUser) {

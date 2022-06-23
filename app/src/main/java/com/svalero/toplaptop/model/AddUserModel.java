@@ -41,12 +41,12 @@ public class AddUserModel implements AddUserContract.Model {
         userCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                onAddUserListener.onAddUserSuccess("Usuario añadido correctamente");
+                onAddUserListener.onAddUserSuccess("User added successfully");
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                onAddUserListener.onAddUserError("No se ha podido añadir el usuario");
+                onAddUserListener.onAddUserError("The user couldn't be added");
                 t.printStackTrace();
             }
         });
@@ -60,12 +60,12 @@ public class AddUserModel implements AddUserContract.Model {
         userCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                onModifyUserListener.onModifyUserSuccess("Usuario modificado con éxito");
+                onModifyUserListener.onModifyUserSuccess("User modified successfully");
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                onModifyUserListener.onModifyUserError("No se ha podido modificar");
+                onModifyUserListener.onModifyUserError("The user couldn't be modified");
                 t.printStackTrace();
             }
         });

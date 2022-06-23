@@ -34,7 +34,7 @@ public class AddComputerPresenter implements AddComputerContract.Presenter, AddC
     @Override
     public void addOrModifyComputer(Computer computer, Boolean modifyComputer) {
         if ((computer.getBrand().equals("")) || (computer.getModel().equals("")) || (computer.getRam().equals(""))) {
-            view.showMessage("Completa todos los campos");
+            view.showMessage("Complete all the fields");
         } else {
 
             if (modifyComputer) {

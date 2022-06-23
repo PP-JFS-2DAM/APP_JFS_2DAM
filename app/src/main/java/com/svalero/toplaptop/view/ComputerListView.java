@@ -37,7 +37,7 @@ public class ComputerListView extends AppCompatActivity implements ComputerListC
     public ComputerAdapter computerArrayAdapter;
     public Spinner findSpinner;
     private String orderBy;
-    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Marca", "Modelo", "Ram"};
+    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Brand", "Model", "RAM"};
     private final String DEFAULT_STRING = "";
     private ComputerListPresenter presenter;
 

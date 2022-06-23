@@ -12,18 +12,18 @@
 
     <item
         android:id="@+id/order_by_default_item"
-        android:title="Ordenar por:" />
+        android:title="Order by:" />
 
     <item
         android:id="@+id/order_by_name_item"
-        android:title="nombre" />
+        android:title="Name" />
 
     <item
         android:id="@+id/order_by_surname_item"
-        android:title="apellido" />
+        android:title="Surname" />
 
     <item
         android:id="@+id/order_by_dni_item"
-        android:title="DNI" />
+        android:title="Personal ID" />
 
 </menu>

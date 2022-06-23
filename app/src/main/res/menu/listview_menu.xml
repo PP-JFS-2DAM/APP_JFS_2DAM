@@ -3,21 +3,17 @@
 
     <item
         android:id="@+id/modify_menu"
-        android:title="MODIFICAR">
-    </item>
+        android:title="MODIFY"></item>
 
     <item
         android:id="@+id/detail_menu"
-        android:title="DETALLES">
-    </item>
+        android:title="DETAILS"></item>
 
     <item
         android:id="@+id/add_menu"
-        android:title="AÑADIR">
-    </item>
+        android:title="ADD"></item>
 
     <item
         android:id="@+id/delete_menu"
-        android:title="ELIMINAR">
-    </item>
+        android:title="DELETE"></item>
 </menu>

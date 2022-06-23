@@ -52,12 +52,12 @@ public class AddComputerModel implements AddComputerContract.Model {
         computerCall.enqueue(new Callback<Computer>() {
             @Override
             public void onResponse(Call<Computer> call, Response<Computer> response) {
-                listener.onAddComputerSuccess("Ordenador añadido con éxito");
+                listener.onAddComputerSuccess("Computer added successfully");
             }
 
             @Override
             public void onFailure(Call<Computer> call, Throwable t) {
-                listener.onAddComputerError("No se ha podido añadir el ordenador");
+                listener.onAddComputerError("The computer couldn't be added");
                 t.printStackTrace();
             }
         });
@@ -78,12 +78,12 @@ public class AddComputerModel implements AddComputerContract.Model {
         computerCall.enqueue(new Callback<Computer>() {
             @Override
             public void onResponse(Call<Computer> call, Response<Computer> response) {
-                listener.onModifyComputerSuccess("Ordenador modificado con éxito");
+                listener.onModifyComputerSuccess("Computer modified successfully");
             }
 
             @Override
             public void onFailure(Call<Computer> call, Throwable t) {
-                listener.onModifyComputerError("No se ha podido modificar el ordenador");
+                listener.onModifyComputerError("The computer couldn't be modified");
                 t.printStackTrace();
             }
         });
@@ -104,7 +104,7 @@ public class AddComputerModel implements AddComputerContract.Model {
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-                listener.onLoadUsersError("Se ha producido un error");
+                listener.onLoadUsersError("An error has occurred");
             }
         });
     }

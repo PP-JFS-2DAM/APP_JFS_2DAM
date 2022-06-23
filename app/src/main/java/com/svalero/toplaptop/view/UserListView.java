@@ -40,7 +40,7 @@ public class UserListView extends AppCompatActivity implements UserListContract.
     private String orderBy;
     private FrameLayout frameLayout;
     public Spinner findSpinner;
-    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Nombre", "Apellido", "Dni"};
+    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Name", "Surname", "Personal ID"};
     private final String DEFAULT_STRING = "";
     private UserListPresenter presenter;
 

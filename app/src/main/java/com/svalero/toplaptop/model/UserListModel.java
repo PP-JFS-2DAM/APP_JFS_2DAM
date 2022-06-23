@@ -87,7 +87,7 @@ public class UserListModel implements UserListContract.Model {
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-                listener.onLoadUsersError("Se ha producido un error");
+                listener.onLoadUsersError("An error has occurred");
                 t.printStackTrace();
             }
         });
@@ -100,12 +100,12 @@ public class UserListModel implements UserListContract.Model {
         userCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                listener.onDeleteUserSuccess("Usuario eliminado correctamente");
+                listener.onDeleteUserSuccess("User deleted successfully");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                listener.onDeleteUserError("No se ha podido eliminar el usuario");
+                listener.onDeleteUserError("The user couldn't be deleted");
                 t.printStackTrace();
             }
         });

@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/layout-land/activity_view_user.xml" value="0.15388007054673722" />
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/layout-land/fragment_order_detail.xml" value="0.15388007054673722" />
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/layout/activity_add_user.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/layout/activity_menu.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/layout/activity_view_user.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/layout/fragment_order_detail.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/layout/fragment_user_detail.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/layout/user_and_computer_adapter.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/Joserra/Desktop/MisCursos/DAM/SemanaPracticas2/APP_JFS_2DAM/app/src/main/res/menu/listview_menu.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/drawable/custom_button.xml" value="0.184" />
         <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout-land/activity_add_order.xml" value="0.24757281553398058" />
         <entry key="..\:/Users/santi/AndroidStudioProjects/PP-JFS-2DAM/app/src/main/res/layout-land/fragment_order_detail.xml" value="0.11694616063548102" />

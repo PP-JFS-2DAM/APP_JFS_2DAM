@@ -11,11 +11,11 @@
 
     <item
         android:id="@+id/order_by_default_item"
-        android:title="Ordenar por:" />
+        android:title="Order by:" />
 
     <item
         android:id="@+id/order_by_date_item"
-        android:title="fecha" />
+        android:title="Date" />
 
     <item
         android:id="@+id/order_by_user_item"

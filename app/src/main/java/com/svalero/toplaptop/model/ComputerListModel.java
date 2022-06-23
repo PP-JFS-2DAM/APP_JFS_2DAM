@@ -88,7 +88,7 @@ public class ComputerListModel implements ComputerListContract.Model {
 
             @Override
             public void onFailure(Call<List<Computer>> call, Throwable t) {
-                listener.onLoadComputersError("Se ha producido un error");
+                listener.onLoadComputersError("An error has occurred");
                 t.printStackTrace();
             }
         });
@@ -101,12 +101,12 @@ public class ComputerListModel implements ComputerListContract.Model {
         computerCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                listener.onDeleteComputerSuccess("Ordenador eliminado correctamente");
+                listener.onDeleteComputerSuccess("Computer deleted successfully");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                listener.onDeleteComputerError("No se ha podido eliminar el ordenador");
+                listener.onDeleteComputerError("The computer couldn't be deleted");
                 t.printStackTrace();
             }
         });

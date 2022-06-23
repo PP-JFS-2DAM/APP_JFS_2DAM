@@ -11,18 +11,18 @@
 
     <item
         android:id="@+id/order_by_default_item"
-        android:title="Ordenar por:" />
+        android:title="Order by:" />
 
     <item
         android:id="@+id/order_by_brand_item"
-        android:title="marca" />
+        android:title="Brand" />
 
     <item
         android:id="@+id/order_by_model_item"
-        android:title="modelo" />
+        android:title="Model" />
 
     <item
         android:id="@+id/order_by_ram_item"
-        android:title="ram" />
+        android:title="RAM" />
 
 </menu>
