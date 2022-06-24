@@ -7,33 +7,65 @@ import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.domain.Order;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface AddOrderContract {
     interface Model {
+        // USERS
+        interface OnLoadUsersListener {
+            void onLoadUsersSuccess(List<User> users);
+
+            void onLoadUsersError(String message);
+        }
+
+        // COMPUTERS
+        interface OnLoadComputersListener {
+            void onLoadComputersSuccess(List<Computer> usersComputer);
+
+            void onLoadComputersError(String message);
+        }
+
+        // ORDERS
+        interface OnAddOrderListener {
+            void onAddOrderSuccess(String message);
+
+            void onAddOrderError(String message);
+        }
+
+        interface OnModifyOrderListener {
+            void onModifyOrderSuccess(String message);
+
+            void onModifyOrderError(String message);
+        }
+
         void startDb(Context context);
 
-        void insertOrder(Order order);
+        void loadAllUser(OnLoadUsersListener listener);
 
-        void updateOrder(Order order);
+        void loadUserComputers(OnLoadComputersListener listener, User user);
 
-        ArrayList<Computer> userComputers(int userId, Context context);
+        void addOrder(OnAddOrderListener listener, Order order);
 
-        ArrayList<User> users(Context context);
+        void modifyOrder(OnModifyOrderListener listener, Order order);
     }
 
     interface View {
-        void fillComputerSpinner(ArrayList<Computer> computers);
+        void loadUserSpinner(List<User> users);
 
-        void fillUserSpinner(ArrayList<User> users);
+        void loadUserComputerSpinner(List<Computer> computers);
+
+        void addComputer(android.view.View view);
 
         void cleanForm();
+
+        void showMessage(String message);
     }
 
     interface Presenter {
-        void addOrder(Order order, Boolean modifyOrder);
+        void loadUsersSpinner();
 
-        void fillComputerSpinner(int userId);
+        void loadUserComputerSpinner(User user);
 
-        void fillUserSpinner();
+        void addOrModifyOrder(Order order, Boolean modifyOrder);
     }
 }

@@ -8,8 +8,6 @@ import androidx.room.TypeConverters;
 
 import com.svalero.toplaptop.database.TimestampConverter;
 
-import java.time.LocalDate;
-
 @Entity
 public class Order implements Comparable<Order> {
 
@@ -17,7 +15,7 @@ public class Order implements Comparable<Order> {
     private int id;     // TODO en la API es LONG!!!
     @ColumnInfo
     @TypeConverters({TimestampConverter.class})
-    private LocalDate orderDate;
+    private String orderDate;
     @ColumnInfo
     private String description;
     @Ignore
@@ -29,7 +27,7 @@ public class Order implements Comparable<Order> {
     }
 
     @Ignore
-    public Order(int id, LocalDate date, String description, Technical technical, Computer computer) {
+    public Order(int id, String date, String description, Technical technical, Computer computer) {
         this.id = id;
         this.orderDate = date;
         this.description = description;
@@ -45,11 +43,11 @@ public class Order implements Comparable<Order> {
         this.id = id;
     }
 
-    public LocalDate getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -82,7 +80,7 @@ public class Order implements Comparable<Order> {
         return "Order{" +
                 "id=" + id +
                 ", date=" + orderDate +
-                ", userId=" + technical +
+                ", technicalId=" + technical +
                 ", computerId=" + computer +
                 ", description='" + description + '\'' +
                 '}';

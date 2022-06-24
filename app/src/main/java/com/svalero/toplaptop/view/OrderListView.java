@@ -43,7 +43,7 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
     private FrameLayout frameLayout;
     private String orderBy;
     public Spinner findSpinner;
-    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Fecha", "User", "Moto", "Matrícula"};
+    private final String[] FIND_SPINNER_OPTIONS = new String[]{"Fecha", "User", "Computer", "Descripcion"};
     private final String DEFAULT_STRING = "";
     private OrderListPresenter presenter;
 
@@ -116,7 +116,7 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
     private void findOrdersBy(String query) {
         ordersDTOArrayList.clear();
         presenter.loadAllOrders();
-
+/*
         switch (findSpinner.getSelectedItemPosition()) {
             case 0:
                 ordersDTOArrayList.clear();
@@ -137,6 +137,8 @@ public class OrderListView extends AppCompatActivity implements OrderListContrac
                         (orderDTO -> (!orderDTO.getComputerRam().toLowerCase().contains(query.toLowerCase())));
                 break;
         }   // End switch
+
+ */
         orderBy(orderBy);
     }
 
