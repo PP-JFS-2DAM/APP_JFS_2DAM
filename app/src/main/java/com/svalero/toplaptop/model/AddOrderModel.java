@@ -53,7 +53,7 @@ public class AddOrderModel implements AddOrderContract.Model {
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-                listener.onLoadUsersError("Se ha producido un error");
+                listener.onLoadUsersError("An error has occurred");
             }
         });
     }
@@ -74,7 +74,7 @@ public class AddOrderModel implements AddOrderContract.Model {
 
             @Override
             public void onFailure(Call<List<Computer>> call, Throwable t) {
-                listener.onLoadComputersError("Se ha producido un error");
+                listener.onLoadComputersError("An error has occurred");
             }
         });
     }
@@ -92,12 +92,12 @@ public class AddOrderModel implements AddOrderContract.Model {
         orderCall.enqueue(new Callback<Order>() {
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
-                listener.onAddOrderSuccess("Orden añadida correctamente");
+                listener.onAddOrderSuccess("Order added successfully");
             }
 
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
-                listener.onAddOrderError("Error al añadir la orden");
+                listener.onAddOrderError("Error adding the order");
                 t.printStackTrace();
             }
         });
@@ -116,12 +116,12 @@ public class AddOrderModel implements AddOrderContract.Model {
         orderCall.enqueue(new Callback<Order>() {
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
-                listener.onModifyOrderSuccess("Orden añadida correctamente");
+                listener.onModifyOrderSuccess("Order added successfully");
             }
 
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
-                listener.onModifyOrderSuccess("Error al añadir la orden");
+                listener.onModifyOrderSuccess("Error adding the order");
                 t.printStackTrace();
             }
         });

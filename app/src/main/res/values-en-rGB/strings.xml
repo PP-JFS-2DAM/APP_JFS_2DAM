@@ -14,7 +14,7 @@
     <string name="order_capital">ORDER</string>
     <string name="dni">Personal ID</string>
     <string name="no_vip">Not VIP</string>
-    <string name="description">Description</string>
+    <string name="description">Component</string>
     <string name="date">Date</string>
     <string name="user">User</string>
     <string name="computer">Computer</string>
