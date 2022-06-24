@@ -81,7 +81,7 @@ public class DetailFragment extends Fragment {
         TextView textView4 = view.findViewById(R.id.fragment_detail_textview4);
 
         switch (activity) {
-            case VIEW_COMPUTER_ACTIVITY:    // TODO fragment de detalles de motos para otro dia
+            case VIEW_COMPUTER_ACTIVITY:    // TODO fragment de detalles de ordenadores para otro dia
                 break;
             case VIEW_USER_ACTIVITY:
                 if (getArguments() != null) {

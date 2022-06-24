@@ -43,7 +43,6 @@ public class UserAdapter extends BaseAdapter {
             byte[] decode = Base64.getDecoder().decode(user.getUserImage());
             Log.i("userr",  Base64.getEncoder().encodeToString(decode));
             userImage.setImageBitmap(ImageUtils.getBitmap(decode));
-            //userImage.setImageBitmap(ImageUtils.getBitmap(user.getUserImage()));
         } else {
             userImage.setImageResource(R.drawable.user);
         }

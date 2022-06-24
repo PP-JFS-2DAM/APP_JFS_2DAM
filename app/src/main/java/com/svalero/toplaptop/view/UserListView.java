@@ -138,17 +138,6 @@ public class UserListView extends AppCompatActivity implements UserListContract.
     private void orderBy(String orderBy) {
         this.orderBy = orderBy;
 
-        switch (orderBy) {
-            case "name":
-                users.stream();
-            case "surname":
-                users.stream();
-            case "dni":
-                users.stream();
-            default:
-                userArrayAdapter.notifyDataSetChanged();
-        }
-        /*
         Collections.sort(users, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
@@ -165,7 +154,6 @@ public class UserListView extends AppCompatActivity implements UserListContract.
             }
         });
         userArrayAdapter.notifyDataSetChanged();
-*/
     }
 
     /**
