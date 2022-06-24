@@ -9,7 +9,7 @@ import java.util.Objects;
 public class OrderDTOAdapter implements Comparable {
 
     private int id;     // Order
-    private LocalDate date; // Order
+    private String date; // Order
     private String userNameSurname;  // User
     private String computerBrandModel;    // User
     private String computerRam;    // Computer
@@ -20,7 +20,7 @@ public class OrderDTOAdapter implements Comparable {
     public OrderDTOAdapter() {
     }
 
-    public OrderDTOAdapter(int id, LocalDate date, String userNameSurname, String computerBrandModel, String computerRam, String computerImageOrder, String description) {
+    public OrderDTOAdapter(int id, String date, String userNameSurname, String computerBrandModel, String computerRam, String computerImageOrder, String description) {
         this.id = id;
         this.date = date;
         this.userNameSurname = userNameSurname;
@@ -38,11 +38,11 @@ public class OrderDTOAdapter implements Comparable {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

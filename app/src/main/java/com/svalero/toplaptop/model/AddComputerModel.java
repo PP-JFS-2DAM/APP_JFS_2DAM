@@ -43,9 +43,7 @@ public class AddComputerModel implements AddComputerContract.Model {
         computerDTO.setModel(computer.getModel());
         computerDTO.setRam(computer.getRam());
         computerDTO.setComputerImage(computer.getComputerImage());
-        Log.i("userId", "iduser model" + computer.getUser().getId());
         computerDTO.setUser(computer.getUser().getId());
-        Log.i("userId", "iduserdto" + computerDTO.getUser());
 
         Call<Computer> computerCall = api.addComputer(computerDTO);
 
@@ -70,9 +68,8 @@ public class AddComputerModel implements AddComputerContract.Model {
         computerDTO.setModel(computer.getModel());
         computerDTO.setRam(computer.getRam());
         computerDTO.setComputerImage(computer.getComputerImage());
-        Log.i("userId", "iduser model" + computer.getUser().getId());
         computerDTO.setUser(computer.getUser().getId());
-        Log.i("userId", "iduserdto" + computerDTO.getUser());
+
         Call<Computer> computerCall = api.modifyComputer(computer.getId(), computerDTO);
 
         computerCall.enqueue(new Callback<Computer>() {

@@ -11,7 +11,9 @@ import com.svalero.toplaptop.domain.Order;
 import com.svalero.toplaptop.model.AddOrderModel;
 import com.svalero.toplaptop.view.AddOrderView;
 
-public class AddOrderPresenter implements AddOrderContract.Presenter {
+import java.util.List;
+
+public class AddOrderPresenter implements AddOrderContract.Presenter, AddOrderContract.Model.OnAddOrderListener, AddOrderContract.Model.OnModifyOrderListener, AddOrderContract.Model.OnLoadUsersListener, AddOrderContract.Model.OnLoadComputersListener {
 
     private AddOrderModel model;
     private AddOrderView view;
@@ -22,47 +24,78 @@ public class AddOrderPresenter implements AddOrderContract.Presenter {
         this.view = view;
 
         model = new AddOrderModel();
+        model.startDb(context);
     }
 
     @Override
-    public void addOrder(Order order, Boolean modifyOrder) {
+    public void loadUsersSpinner() {
+        model.loadAllUser(this);
+    }
 
-        Computer computer = new Computer();
-        User user = new User();
+    @Override
+    public void loadUserComputerSpinner(User user) {
+        model.loadUserComputers(this, user);
+    }
 
+    @Override
+    public void addOrModifyOrder(Order order, Boolean modifyOrder) {
         model.startDb(view.getApplicationContext());
 
         if (view.getComputerSpinner().getCount() == 0) {
             // TODO view.showMessage(message);
         } else if ((order.getDescription().equals("")) || (order.getOrderDate() == null)) {
-            Toast.makeText(context, R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
+            view.showMessage("Completa all fields");
         } else {
-            user.setId((int) view.getUsers().get(view.getUserSpinner().getSelectedItemPosition()).getId());
-            // order.setUser(user);
-            computer.setId(view.getComputers().get(view.getComputerSpinner().getSelectedItemPosition()).getId());
-            order.setComputer(computer);
-
             if (modifyOrder) {
                 view.setModifyOrder(false);
                 view.getAddButton().setText(R.string.add_button);
-                model.updateOrder(order);
-                Toast.makeText(context, R.string.modified_order, Toast.LENGTH_SHORT).show();
+                model.modifyOrder(this, order);
             } else {
                 order.setId(0);
-                model.insertOrder(order);
-                Toast.makeText(context, R.string.added_order, Toast.LENGTH_SHORT).show();
+                model.addOrder(this, order);
             }
-            view.cleanForm();
         }
     }
 
     @Override
-    public void fillComputerSpinner(int userId) {
-        view.fillComputerSpinner(model.userComputers(userId, view.getApplicationContext()));
+    public void onLoadUsersSuccess(List<User> users) {
+        view.loadUserSpinner(users);
     }
 
     @Override
-    public void fillUserSpinner() {
-        view.fillUserSpinner(model.users(view.getApplicationContext()));
+    public void onLoadUsersError(String message) {
+        view.showMessage(message);
+    }
+
+    @Override
+    public void onLoadComputersSuccess(List<Computer> usersComputer) {
+        view.loadUserComputerSpinner(usersComputer);
+    }
+
+    @Override
+    public void onLoadComputersError(String message) {
+        view.showMessage(message);
+    }
+
+    @Override
+    public void onAddOrderSuccess(String message) {
+        view.showMessage(message);
+        view.cleanForm();
+    }
+
+    @Override
+    public void onAddOrderError(String message) {
+        view.showMessage(message);
+    }
+
+    @Override
+    public void onModifyOrderSuccess(String message) {
+        view.showMessage(message);
+        view.cleanForm();
+    }
+
+    @Override
+    public void onModifyOrderError(String message) {
+        view.showMessage(message);
     }
 }
