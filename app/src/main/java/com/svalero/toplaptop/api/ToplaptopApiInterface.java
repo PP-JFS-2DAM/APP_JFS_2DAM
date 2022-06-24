@@ -3,8 +3,10 @@ package com.svalero.toplaptop.api;
 import android.util.Log;
 
 import com.svalero.toplaptop.domain.Computer;
+import com.svalero.toplaptop.domain.Order;
 import com.svalero.toplaptop.domain.User;
 import com.svalero.toplaptop.domain.dto.ComputerDTO;
+import com.svalero.toplaptop.domain.dto.OrderDTO;
 
 import java.util.List;
 
@@ -31,6 +33,9 @@ public interface ToplaptopApiInterface {
 
     @GET("computers")
     Call<List<Computer>> getComputersByRam(@Query("ram") String ram);
+
+    @GET("user/{id}/computers")
+    Call<List<Computer>> getComputersByUserId(@Path("id") long id);
 
     @DELETE("computer/{id}")
     Call<Void> deleteComputer(@Path("id") long id);
@@ -62,5 +67,13 @@ public interface ToplaptopApiInterface {
 
     @PUT("user/{id}")
     Call<User> modifyUser(@Path("id") long id, @Body User user);
+
+    // ORDERS
+    @POST("order")
+    Call<Order> addOrder(@Body OrderDTO orderDTO);
+
+    @PUT("order/{id}")
+    Call<Order> modifyOrder(@Path("id") long id, @Body OrderDTO orderDTO);
+
 
 }

@@ -1,14 +1,8 @@
 package com.svalero.toplaptop.domain.dto;
 
-import com.svalero.toplaptop.domain.Computer;
-import com.svalero.toplaptop.domain.Technical;
-import com.svalero.toplaptop.domain.User;
-
-import java.time.LocalDate;
-
 public class OrderDTO {
 
-    private LocalDate orderDate;
+    private String orderDate;
     private String description;
     private int technical;
     private int computer;
@@ -16,18 +10,20 @@ public class OrderDTO {
     public OrderDTO() {
     }
 
-    public OrderDTO(LocalDate orderDate, String description, int technical, int computer) {
+    public OrderDTO(String orderDate, String description, int user, int computer) {
         this.orderDate = orderDate;
         this.description = description;
-        this.technical = technical;
+        this.technical = user;
         this.computer = computer;
     }
 
-    public LocalDate getOrderDate() {
+
+
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -53,5 +49,15 @@ public class OrderDTO {
 
     public void setComputer(int computer) {
         this.computer = computer;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDTO{" +
+                "orderDate='" + orderDate + '\'' +
+                ", description='" + description + '\'' +
+                ", technical=" + technical +
+                ", computer=" + computer +
+                '}';
     }
 }

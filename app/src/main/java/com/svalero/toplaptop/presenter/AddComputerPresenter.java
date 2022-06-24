@@ -36,7 +36,6 @@ public class AddComputerPresenter implements AddComputerContract.Presenter, AddC
         if ((computer.getBrand().equals("")) || (computer.getModel().equals("")) || (computer.getRam().equals(""))) {
             view.showMessage("Completa todos los campos");
         } else {
-
             if (modifyComputer) {
                 view.setModifyComputer(false);
                 view.getAddButton().setText(R.string.add_button);

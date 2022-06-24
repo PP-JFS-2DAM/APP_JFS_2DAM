@@ -44,7 +44,7 @@ public class OrderAdapter extends BaseAdapter {
         if (!orderDTOAdapter.getComputerImageOrder().equalsIgnoreCase(""))
             orderComputerImage.setImageBitmap(ImageUtils.getBitmap(Base64.getDecoder().decode(orderDTOAdapter.getComputerImageOrder())));
 
-        orderDateAndComputerModel.setText(DateUtils.fromLocalDateToMyDateFormatString(orderDTOAdapter.getDate()) + " || " + orderDTOAdapter.getComputerBrandModel());
+        orderDateAndComputerModel.setText(orderDTOAdapter.getDate() + " || " + orderDTOAdapter.getComputerBrandModel());
         orderRamAndDescription.setText(orderDTOAdapter.getComputerRam() + " || " + orderDTOAdapter.getDescription());
 
         return convertView;
